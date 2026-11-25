@@ -1,0 +1,17 @@
+{
+  "name": "vyron-fit-v25",
+  "version": "25.1.0",
+  "private": true,
+  "description": "VYRON FIT V25 — standalone Arabic-first fitness web application",
+  "scripts": {
+    "check:project": "node scripts/validate-project.mjs",
+    "test:header": "node tests/header-stability/suite.js index.html",
+    "test:header:stress": "cross-env THROTTLE=6 SEED=2500 node tests/header-stability/suite.js index.html",
+    "test:header:sample": "node tests/header-stability/harness.js index.html",
+    "test": "npm run check:project && npm run test:header"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "playwright": "^1.55.0"
+  }
+}

@@ -1,0 +1,21 @@
+name: VYRON FIT quality checks
+
+on:
+  push:
+    branches: [main, "vyron-*"]
+  pull_request:
+    branches: [main]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm install
+      - run: npm run check:project
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:header

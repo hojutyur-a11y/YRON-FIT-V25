@@ -1,0 +1,6 @@
+export const uid=()=>crypto.randomUUID?crypto.randomUUID():String(Date.now())+Math.random().toString(16).slice(2);
+export const escapeHTML=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+export function toast(msg){const el=document.getElementById("toast");el.textContent=msg;el.classList.add("show");clearTimeout(window.__toastTimer);window.__toastTimer=setTimeout(()=>el.classList.remove("show"),2400);}
+export function modal(title,html){const root=document.getElementById("modalRoot");root.innerHTML=`<div class="modal-backdrop" id="modalBackdrop"><div class="modal"><div class="modal-head"><h2>${title}</h2><button class="close-btn" id="closeModal">×</button></div>${html}</div></div>`;document.getElementById("closeModal").onclick=closeModal;document.getElementById("modalBackdrop").onclick=e=>{if(e.target.id==="modalBackdrop")closeModal();};}
+export function closeModal(){document.getElementById("modalRoot").innerHTML="";}
+export function pageShell(title,subtitle,body){return `<h1 class="page-title">${title}</h1>${subtitle?`<p class="page-subtitle">${subtitle}</p>`:""}${body}`;}
