@@ -63,3 +63,9 @@ Never commit personal data exports, API keys, passwords, access tokens, or `.env
 ## Scope and limitations
 
 This preparation adds repository structure, documentation, static validation, and browser-test setup. It does **not** claim every fitness feature has been manually verified on Android, and it does not silently redesign application UI. A separate feature-by-feature functional audit is required before calling the app production-ready.
+
+## PWA support (V25)
+
+The GitHub Pages entry point (`index.html`) now includes a web app manifest, install icons, and a service worker. Serve the site over HTTPS (GitHub Pages does this) and open it in a supported browser. After the first successful online load, the app shell is cached for a basic offline reopen. Third-party resources (such as Google Fonts) may still require a network connection on first use. Browser-local user data remains on that device; the service worker does not synchronize data to the cloud.
+
+PWA files: `manifest.webmanifest`, `service-worker.js`, `icon-192.png`, and `icon-512.png`. `index.html` and `VYRON_FIT_V25.html` are kept identical; GitHub Pages serves `index.html`.
